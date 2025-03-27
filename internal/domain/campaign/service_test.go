@@ -3,6 +3,7 @@ package campaign
 import (
 	"errors"
 	"gomail/internal/domain/campaign/contract"
+	internalerrors "gomail/internal/internal-errors"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -72,5 +73,5 @@ func Test_Create_ValidateDatabaseSave(t *testing.T) {
 
 	_, err := service.Create(newCampaign)
 
-	assert.Equal("error to save on database", err.Error())
+	assert.True(errors.Is(err, internalerrors.ErrInternal))
 }
