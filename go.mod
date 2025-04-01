@@ -4,6 +4,8 @@ go 1.24.1
 
 require github.com/stretchr/testify v1.10.0
 
+require github.com/jaswdr/faker v1.19.1
+
 require (
 	github.com/gabriel-vasile/mimetype v1.4.8 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
