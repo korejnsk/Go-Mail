@@ -6,6 +6,8 @@ require github.com/stretchr/testify v1.10.0
 
 require github.com/jaswdr/faker v1.19.1
 
+require (
+)
 
 require (
 	github.com/gabriel-vasile/mimetype v1.4.8 // indirect
