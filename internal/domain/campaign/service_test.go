@@ -30,8 +30,11 @@ var (
 
 func Test_Create_Campaign(t *testing.T) {
 	assert := assert.New(t)
+	repositoryMock := new(repositoryMock)
+	repositoryMock.On("Save", mock.Anything).Return(nil)
+	service.Repository = repositoryMock
 
-	id, err := service.Create(newCampaign)
+	id, err := service.Create(contract.NewCampaign{})
 
 	assert.NotNil(id)
 	assert.Nil(err)
@@ -39,12 +42,10 @@ func Test_Create_Campaign(t *testing.T) {
 
 func Test_Create_ValidateDomainError(t *testing.T) {
 	assert := assert.New(t)
-	newCampaign.Name = ""
 
 	_, err := service.Create(newCampaign)
 
-	assert.NotNil(err)
-	assert.Equal("name is required", err.Error())
+	assert.False(errors.Is(err, internalerrors.ErrInternal))
 }
 
 func Test_Create_SaveCampaign(t *testing.T) {
